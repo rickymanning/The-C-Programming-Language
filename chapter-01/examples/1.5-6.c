@@ -8,7 +8,7 @@
 /* count lines, words, and characters in input */
 main()
 {
-	int c, nl, nw, nc, state;
+  int c, nl, nw, nc, state;
 
   state = OUT;
   nl = nw = nc = 0;
