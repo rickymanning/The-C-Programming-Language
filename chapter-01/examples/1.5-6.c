@@ -12,7 +12,7 @@ main()
 
     state = OUT;
     nl = nw = nc = 0;
-    while ((c = getchar() != EOF)) {
+    while ((c = getchar()) != EOF) {
         ++nc;
         if (c == '\n')
             ++nl;
