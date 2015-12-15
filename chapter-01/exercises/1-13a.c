@@ -7,37 +7,37 @@ input (vertically), page 24 */
 
 main()
 {
-  int c, i, j, nc, lc;
-  int nwords[MAX];
+    int c, i, j, nc, lc;
+    int nwords[MAX];
 
-  /* initialise the array, set all values to 0 */
-  for (i = 0; i < MAX; ++i)
-      nwords[i] = 0;
+    /* initialise the array, set all values to 0 */
+    for (i = 0; i < MAX; ++i)
+        nwords[i] = 0;
 
-      /* keep reading the input characters until there are no more left. the
-      aim is to count the characters in each word and update the array which
-      we are using to count the occurrences of differing word lengths.
-      */
-      nc = lc = 0;
-      while ((c = getchar()) != EOF) {
-          if (c == ' ' || c == '\n' || c == '\t') {
-              /* we are not in a word. if we have just finished a word (i.e.
-              nc is not greater than 0) then update the array. */
-              if (nc > 0 && nc <= MAX) {
-                  ++nwords[nc-1];
-                  /* if the new  count for this index is greater than our
-                  current largest count then update the latest count. */
-                  if (nwords[nc-1] > lc)
-                      lc = nwords[nc-1];
-              }
-              /* ensure that nc will be 0 for the next iteration */
-              nc = 0;
-          }
-          else
-              /* we must be in a word. increment that character counter and
-              move on */
-              ++nc;
-      }
+    /* keep reading the input characters until there are no more left. the
+    aim is to count the characters in each word and update the array which
+    we are using to count the occurrences of differing word lengths.
+    */
+    nc = lc = 0;
+    while ((c = getchar()) != EOF) {
+        if (c == ' ' || c == '\n' || c == '\t') {
+            /* we are not in a word. if we have just finished a word (i.e.
+            nc is not greater than 0) then update the array. */
+            if (nc > 0 && nc <= MAX) {
+                ++nwords[nc-1];
+                /* if the new  count for this index is greater than our
+                current largest count then update the latest count. */
+                if (nwords[nc-1] > lc)
+                    lc = nwords[nc-1];
+            }
+            /* ensure that nc will be 0 for the next iteration */
+            nc = 0;
+        }
+        else
+            /* we must be in a word. increment that character counter and
+            move on */
+            ++nc;
+    }
 
     /* output the histogram (vertical)
     the aim is to plot the histogram values as if they were points on a
