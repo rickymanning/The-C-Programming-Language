@@ -4,7 +4,6 @@ character in s1 that matches any character in s2, page 48 */
 #include <stdio.h>
 
 void squeeze(char s1[], char s2[]);
-//void squeeze(char s1[], int c);
 
 int main()
 {
