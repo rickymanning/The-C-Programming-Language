@@ -44,6 +44,6 @@ unsigned setbits(unsigned x, int p, int n, unsigned y)
     /* mask off the bits in x that we want to overwrite */
     x = x & mask;
     
-	/* return the overwritten bits in x */
+    /* return the overwritten bits in x */
     return x | bits;
 }
