@@ -25,7 +25,7 @@ unsigned getbits(unsigned x, int p, int n)
     return (x >> (p+1-n)) & ~(~0 << n);
 }
 
-/* setbits: replace bits p -> p+n of x with rightmost n bits from y */
+/* setbits: replace bits p -> p+1-n of x with rightmost n bits from y */
 unsigned setbits(unsigned x, int p, int n, unsigned y)
 {
     int bits;
@@ -33,12 +33,12 @@ unsigned setbits(unsigned x, int p, int n, unsigned y)
 
     /* get the rightmost n bits from y and shift them to position p */
     bits = getbits(y, n-1, n);
-    bits = bits << p;
+    bits = bits << (p+1-n);
 
-    /* create a mask containing all 1s apart from bits p to p+n */
+    /* create a mask containing all 1s apart from bits p to p+1-n */
     mask = ~0;
     mask = mask << n;
-    mask = (~mask) << p;
+    mask = (~mask) << (p+1-n);
     mask = ~mask;
 
     /* mask off the bits in x that we want to overwrite */
