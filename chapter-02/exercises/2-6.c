@@ -9,12 +9,13 @@ unsigned getbits(unsigned x, int p, int n);
 
 int main()
 {
-    int x, p, n, y;
+    unsigned x, y;
+    int p, n;
 
-    x = 209;
+    x = 209U;
     p = 4;
     n = 3;
-    y = 187;
+    y = 187U;
 
     printf("%u\n", setbits(x, p, n, y));
 }

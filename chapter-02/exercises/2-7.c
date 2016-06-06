@@ -10,9 +10,10 @@ unsigned invert(unsigned x, int p, int n);
 
 int main()
 {
-    int x, p, n;
+    unsigned x;
+    int p, n;
 
-    x = 209;
+    x = 209U;
     p = 4;
     n = 3;
 
