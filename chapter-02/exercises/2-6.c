@@ -20,7 +20,7 @@ int main()
     printf("%u\n", setbits(x, p, n, y));
 }
 
-/* getbits: get the rightmost n bits of y and shift them left to position p */
+/* getbits: get n bits from position p */
 unsigned getbits(unsigned x, int p, int n)
 {
     return (x >> (p+1-n)) & ~(~0 << n);
