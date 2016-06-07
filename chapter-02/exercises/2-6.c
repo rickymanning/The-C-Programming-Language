@@ -29,8 +29,7 @@ unsigned getbits(unsigned x, int p, int n)
 /* setbits: replace bits p -> p+1-n of x with rightmost n bits from y */
 unsigned setbits(unsigned x, int p, int n, unsigned y)
 {
-    int bits;
-    unsigned mask;
+    unsigned bits, mask;
 
     /* get the rightmost n bits from y and shift them to position p */
     bits = getbits(y, n-1, n);
