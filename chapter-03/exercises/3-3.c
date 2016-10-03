@@ -1,8 +1,8 @@
 /* 3-3 Write a function expand(s1,s2) that expands shorthand notations like 
-a-z in the string in the string s1 into the equivalent complete list 
-abc...xyz in s2. Allow for letters of either case and digits, and be prepared
-to handle cases like a-b-c and a-z0-9 and -a-z. Arrange that a leading or
-trailing - is taken literally, page 63 */
+a-z in the string s1 into the equivalent complete list abc...xyz in s2. 
+Allow for letters of either case and digits, and be prepared to handle cases 
+like a-b-c and a-z0-9 and -a-z. Arrange that a leading or trailing - is taken 
+literally, page 63 */
 
 #include <stdio.h>
 
@@ -24,7 +24,7 @@ void expand(char a[], char b[]);
 
 /* NOTE: I am aware that there are standard library implementations of some
 of the routines that I have written here -- e.g. isAlphabetic(int) serves the
-same purpose as isalpha(int) -- and the starndard library versions will be 
+same purpose as isalpha(int) -- and the standard library versions will be 
 more robust, but I deemed it against the spirit of the exercise to use them,
 so I wrote my own versions. */
 
@@ -64,13 +64,14 @@ void expand(char s1[], char s2[])
                 prev = s1[i-1];
                 next = s1[i+1];
 
-                /* check that the range matches first though */
+                /* check that the range is valid before going any further */
                 if (isValidRange(prev, next)) {
 
-                    /* if we are the 2nd+ hypehen in a group e.g. between 
+                    /* if we are the 2nd+ hyphen in a group e.g. between 
                     b and c in "a-b-c" then skip the first char in the 
-                    group */
-                    if (thePrevRangeEnd == (i - 1)){
+                    group because we already copied it when dealing with the
+                    a-b part */
+                    if (thePrevRangeEnd == (i - 1)) {
                        ++prev;
                     }
 
