@@ -120,6 +120,11 @@ void print(void)
 /* duplicate: duplicate the top item of the stack */
 void duplicate(void)
 {
+    if (sp < 1) {
+        printf("error: stack is empty, can't duplicate\n");
+        return;
+    }
+
     /* get the top char */
     double dup = pop(); 
 
@@ -131,6 +136,11 @@ void duplicate(void)
 /* swap: swap the top two items on the stack */
 void swap(void)
 {
+    if (sp < 2) {
+        printf("error: not enough items on the stack, can't swap\n");
+        return;
+    }
+
     double val1 = pop();
     double val2 = pop();
 

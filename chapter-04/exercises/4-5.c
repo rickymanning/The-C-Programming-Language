@@ -125,6 +125,11 @@ void print(void)
 /* duplicate: duplicate the top item of the stack */
 void duplicate(void)
 {
+    if (sp < 1) {
+        printf("error: stack is empty, can't duplicate\n");
+        return;
+    }
+
     /* get the top char */
     double dup = pop(); 
 
@@ -136,6 +141,11 @@ void duplicate(void)
 /* swap: swap the top two items on the stack */
 void swap(void)
 {
+    if (sp < 2) {
+        printf("error: not enough items on the stack, can't swap\n");
+        return;
+    }
+
     double val1 = pop();
     double val2 = pop();
 
@@ -155,18 +165,25 @@ void clear(void)
 /* handle_word: test the word in s for known operations and execute them */
 void handle_word(char s[])
 {
-    double val1, val2;
-    
-    /* could place in each if-block if i really wanted to */
-    val1 = pop();
-
     if (!strcmp(s, "sin")) {
-        push(sin(val1));
+        if (sp < 1)
+            printf("error: not enough items on the stack, use %s\n", s);
+        else 
+            push(sin(pop()));
+
     } else if (!strcmp(s, "exp")) {
-        push(exp(val1));
+        if (sp < 1)
+            printf("error: not enough items on the stack, use %s\n", s);
+        else
+            push(exp(pop()));
+
     } else if (!strcmp(s, "pow")) {
-        val2 = pop(); /* base */
-        push(pow(val2, val1));
+        if (sp < 22)
+            printf("error: not enough items on the stack, use %s\n", s);
+        else {
+            double expo = pop(); /* exponent */
+            push(pow(pop(), expo));
+        }
     } else {
         printf("error: unknown operation");
         push(val1); /* put val1 back on the stack */
