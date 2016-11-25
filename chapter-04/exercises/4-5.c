@@ -25,7 +25,6 @@ main()
     int type;
     double op2;
     char s[MAXOP];
-    int skip_newline = 0;
 
     while ((type = getop(s)) != EOF) {
         switch (type) {
@@ -60,26 +59,8 @@ main()
                 else
                     printf("error: zero divisor\n");
                 break;
-            case 'p':   /* print top */
-                print();
-                skip_newline = 1;
-                break;
-            case 'd':   /* duplicate */
-                duplicate();
-                skip_newline = 1;
-                break;
-            case 's':   /* swap */
-                swap();
-                skip_newline = 1;
-                break;
-            case 'c':   /* clear */
-                clear();
-                skip_newline = 1;
-                break;
-            case '\n':
-                if (!skip_newline)
-                    printf("\t%.8g\n", pop());
-                skip_newline = 0;
+           case '\n':
+                printf("\t%.8g\n", pop());
                 break;
             default:
                 printf("error: unknown command %s\n", s);
@@ -119,7 +100,7 @@ void print(void)
     if (sp > 0)
         printf("top of the stack: \t%.8g\n", val[sp-1]);
     else
-        printf("error: stack is empty");
+        printf("error: stack is empty\n");
 }
 
 /* duplicate: duplicate the top item of the stack */
@@ -178,15 +159,27 @@ void handle_word(char s[])
             push(exp(pop()));
 
     } else if (!strcmp(s, "pow")) {
-        if (sp < 22)
+        if (sp < 2)
             printf("error: not enough items on the stack, use %s\n", s);
         else {
             double expo = pop(); /* exponent */
             push(pow(pop(), expo));
         }
+
+    } else if (!strcmp(s, "print")) {
+        print();
+
+    } else if (!strcmp(s, "dup")) {
+        duplicate();
+
+    } else if (!strcmp(s, "swap")) {
+        swap();
+
+    } else if (!strcmp(s, "clear")) {
+        clear();
+
     } else {
-        printf("error: unknown operation");
-        push(val1); /* put val1 back on the stack */
+        printf("error: unknown operation\n");
     }
 }
 
@@ -216,6 +209,7 @@ int getop(char s[])
 
         /* put the last char back as it is non alpha */
         ungetch(c);
+        
         return WORD;
     }
     
@@ -268,7 +262,7 @@ int getch(void)
 void ungetch(int c)
 {
     if (bufp >= BUFSIZE)
-        printf("ungetch: too many characters");
+        printf("ungetch: too many characters\n");
     else
         buf[bufp++] = c;
 }
